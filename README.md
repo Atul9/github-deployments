@@ -5,7 +5,18 @@ This is all you need to know:
 * "publicPath" - if using multiple files, webpack can load them in async. But needs to know where we host those files and uses this config to know that.
 * webpack-dev-server does not need any config as such. Just read https://webpack.github.io/docs/webpack-dev-server.html carefully.
 
-Production :
+## Development
 
-Coming soon
+```
+$ npm start
+# Open http://localhost:8080 in browser and hack away.
+```
+
+## Production :
+
+To compile your bundle into dist/ directory,
+
+```
+./build # Or "npm run buil"
+```
 
