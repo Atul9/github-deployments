@@ -39,9 +39,11 @@ class MyComponent extends Component {
   }
 
   _renderDeployment(deployment){
-    <div>
-    deployment.name -- deployment.logs -- deployment.url
-    </div>
+    <tr>
+    <td>{deployment.name}</td>
+    <td>{deployment.logs}</td>
+    <td>{deployment.url}</td>
+    </tr>
   }
 
   render() {
@@ -52,10 +54,23 @@ class MyComponent extends Component {
         <button name="deploy" onClick={this.handleClick.bind(this)}>Deploy</button>
         <br />
         <div>{this.state.customError}</div>
+
         <br/>
         Deployments
-        {this.state.deployments.map((deployment) => { return this._renderDeployment(deployment)})}
-      </div>
+
+        <table>
+        <thead>
+        <tr>
+        <th> Name</th>
+        <th> Log</th>
+        <th> Url</th>
+        </tr>
+        </thead>
+        <tbody>
+        {this.state.deployments.map((deployment) => {return this._renderDeployment(deployment)})}
+        </tbody>
+        </table>
+        </div>
     )
   }
 }
