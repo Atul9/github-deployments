@@ -7,7 +7,13 @@ class MyComponent extends Component {
     this.state = {
       customError: "",
       username: "",
-      repository: ""
+      repository: "",
+      deployments: [
+        {name: "A", logs: "111", url: "http://google.com"},
+        {name: "B", logs: "111", url: "http://google.com"},
+        {name: "C", logs: "111", url: "http://google.com"},
+        {name: "D", logs: "111", url: "http://google.com"}
+      ]
     }
   }
 
@@ -32,6 +38,12 @@ class MyComponent extends Component {
     this.setState({repository: e.target.value})
   }
 
+  _renderDeployment(deployment){
+    <div>
+    deployment.name -- deployment.logs -- deployment.url
+    </div>
+  }
+
   render() {
     return (
       <div>https://github.com/
@@ -40,7 +52,10 @@ class MyComponent extends Component {
         <button name="deploy" onClick={this.handleClick.bind(this)}>Deploy</button>
         <br />
         <div>{this.state.customError}</div>
-        </div>
+        <br/>
+        Deployments
+        {this.state.deployments.map((deployment) => { return this._renderDeployment(deployment)})}
+      </div>
     )
   }
 }
