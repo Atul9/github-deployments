@@ -17,33 +17,22 @@ class MyComponent extends Component {
     }
   }
 
-  handleClick(e){
-    this.validate(this.state.username, this.state.repository);
-  }
-
   validate(username, repository){
     if((!username) || (!repository)){
-      console.log("Inside validate");
       this.setState({customError: "Please enter a github project to deploy"});
     }else{
-      this.setState({customError: ""});
+      this.setState({customError: "Click the Deploy button to deploy https://github.com/" + this.state.username + "/"+ this.state.repository});
     }
   }
 
-  userNameChange(e) {
-    this.setState({username: e.target.value});
+  userNameChange(event) {
+    this.setState({username: event.target.value});
+    this.validate(this.state.username, this.state.repository);
   }
 
-  repositoryChange(e){
-    this.setState({repository: e.target.value})
-  }
-
-  _renderDeployment(deployment){
-    <tr>
-    <td>{deployment.name}</td>
-    <td>{deployment.logs}</td>
-    <td>{deployment.url}</td>
-    </tr>
+  repositoryChange(event){
+    this.setState({repository: event.target.value})
+    this.validate(this.state.username, this.state.repository);
   }
 
   render() {
@@ -51,10 +40,8 @@ class MyComponent extends Component {
       <div>https://github.com/
         <input name="username" onChange={this.userNameChange.bind(this)}/>/
         <input name="repository" onChange={this.repositoryChange.bind(this)}/>
-        <button name="deploy" onClick={this.handleClick.bind(this)}>Deploy</button>
         <br />
         <div>{this.state.customError}</div>
-
         <br/>
         Deployments
 
@@ -67,7 +54,14 @@ class MyComponent extends Component {
         </tr>
         </thead>
         <tbody>
-        {this.state.deployments.map((deployment) => {return this._renderDeployment(deployment)})}
+        {this.state.deployments.map((deployment) => {
+          return (
+           <tr>
+            <td>{deployment.name}</td>
+            <td>{deployment.logs}</td>
+            <td>{deployment.url}</td>
+            </tr>
+          )})}
         </tbody>
         </table>
         </div>
