@@ -1,5 +1,5 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import MyComponent from './my_component';
+import DeploymentForm from './deployment_form';
 
-ReactDOM.render(<MyComponent/>, document.getElementById('root'));
+ReactDOM.render(<DeploymentForm />, document.getElementById('root'));
