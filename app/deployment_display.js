@@ -1,12 +1,5 @@
 import React, {Component} from 'react';
 class DeploymentDisplay extends Component {
-
-  getDefaultProps() {
-    return {
-      deployments: [{name: "Repo 1", logs: "111", url: "http://google.com"}]
-    }
-  }
-
   render() {
     return (
       <div>Deployments
@@ -19,12 +12,12 @@ class DeploymentDisplay extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.props.deployments.map((deployment) => {
+            {this.props.deployments.map((deployment, i) => {
               return (
-                <tr>
-                  <td>{deployment.name}</td>
-                  <td>{deployment.logs}</td>
-                  <td>{deployment.url}</td>
+                <tr key={i}>
+                  <td key="a">{deployment.name}</td>
+                  <td key="b">{deployment.logs}</td>
+                  <td key="c">{deployment.url}</td>
                 </tr>
               )})}
           </tbody>
@@ -33,4 +26,7 @@ class DeploymentDisplay extends Component {
     )
   }
 }
+
+DeploymentDisplay.propTypes = { deployments: React.PropTypes.array.isRequired };
+DeploymentDisplay.defaultProps = { deployments: [{name: "Repo 1", logs: "111", url: "http://one.com"}] };
 export default DeploymentDisplay
