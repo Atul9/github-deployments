@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 class DeploymentDisplay extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      deployments: []
+
+  getDefaultProps() {
+    return {
+      deployments: [{name: "Repo 1", logs: "111", url: "http://google.com"}]
     }
   }
+
   render() {
     return (
       <div>Deployments
@@ -18,7 +19,7 @@ class DeploymentDisplay extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.deployments.map((deployment) => {
+            {this.props.deployments.map((deployment) => {
               return (
                 <tr>
                   <td>{deployment.name}</td>

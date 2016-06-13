@@ -35,7 +35,7 @@ class DeploymentForm extends Component {
           <br />
           <div>{this.displayHelpText()}</div>
           <br/>
-          <DeploymentDisplay />
+          <DeploymentDisplay deployments={[{name: "A", logs: "111", url: "http://google.com"}]}/>
         </div>
     )
   }
