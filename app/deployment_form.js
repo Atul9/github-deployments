@@ -7,7 +7,8 @@ class DeploymentForm extends Component {
     super(props);
     this.state = {
       username: "",
-      repository: ""
+      repository: "",
+      deployments: []
     }
   }
 
@@ -27,15 +28,23 @@ class DeploymentForm extends Component {
     }
   }
 
+  handleClick(e){
+    let newElement = {name: `${this.state.username}/${this.state.repository}`, logs: '111', url: "http://one.com"};
+    let deploymentsArray = this.state.deployments;
+    deploymentsArray.push(newElement);
+    this.setState({deployments: deploymentsArray}, this.clearInput);
+  }
+
   render() {
     return (
         <div>https://github.com/
           <input name="username" onChange={this.handleUserNameChange}/>/
           <input name="repository" onChange={this.handleRepositoryChange} />
+          <button name="deploy" onClick={this.handleClick.bind(this)}>Deploy</button>
           <br />
           <div>{this.displayHelpText()}</div>
           <br/>
-          <DeploymentDisplay deployments={[{name: "A", logs: "111", url: "http://google.com"}]}/>
+          <DeploymentDisplay deployments={this.state.deployments}/>
         </div>
     )
   }
