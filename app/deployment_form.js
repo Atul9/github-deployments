@@ -28,7 +28,7 @@ class DeploymentForm extends Component {
     }
   }
 
-  handleClick(e){
+  handleClick(e) {
     let newElement = {name: `${this.state.username}/${this.state.repository}`, logs: '111', url: "http://one.com"};
     let deploymentsArray = this.state.deployments;
     deploymentsArray.push(newElement);
@@ -40,7 +40,7 @@ class DeploymentForm extends Component {
         <div>https://github.com/
           <input name="username" onChange={this.handleUserNameChange}/>/
           <input name="repository" onChange={this.handleRepositoryChange} />
-          <button name="deploy" onClick={this.handleClick.bind(this)}>Deploy</button>
+          <button name="deploy" onClick={this.handleClick.bind(this)} disabled={(!this.state.username || !this.state.repository)}>Deploy</button>
           <br />
           <div>{this.displayHelpText()}</div>
           <br/>
